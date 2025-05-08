@@ -34,11 +34,15 @@ Vous pouvez utiliser ce jeu de données pour l'analyse boursière, la modélisat
 ## Structure du projet
 
 ```
-.
+BVMT-Scraping/
 ├── data/
-│   └── bvmt_stocks_processed.csv
-├── README.md
-└── .gitignore
+│   └── bvmt_stocks_processed.csv      # Ton fichier de données principal
+├── scripts/
+│   └── example_analysis.py            # (Optionnel) Exemple de script d'analyse ou de chargement des données
+├── README.md                          # Présentation du projet, explications, structure des données
+├── requirements.txt                   # Dépendances Python nécessaires
+├── .gitignore                         # Fichiers à ignorer par git
+└── LICENSE                            # (Optionnel mais recommandé) Licence d'utilisation
 ```
 
 ## Licence
