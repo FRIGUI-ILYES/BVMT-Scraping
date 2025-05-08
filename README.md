@@ -18,9 +18,14 @@ Le fichier `data/bvmt_stocks_processed.csv` contient les colonnes suivantes :
 10. **MA (Moving Average)** : Moyenne mobile des prix
 11. **Volatility** : Volatilité (écart-type)
 12. **Avg Volume** : Volume moyen d'échanges
-13. **Indicator 1** : Indicateur technique 1
-14. **Indicator 2** : Indicateur technique 2
-15. **Indicator 3** : Indicateur technique 3
+13. **momentum_3d** :Mesure le taux de variation des prix sur trois périodes, indiquant la force d'une tendance.
+14. **price_accel** :  Suit le taux de changement des prix, mettant en évidence l'accélération ou la décélération du mouvement des prix
+15. **rel_sector_strength** :Compare la performance d'un secteur à celle du marché global, indiquant sa force relative.
+
+
+
+
+
 
 ## Utilisation
 
