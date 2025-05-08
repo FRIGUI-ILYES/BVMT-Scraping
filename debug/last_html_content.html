@@ -1,0 +1,193 @@
+<html>
+<head>
+	<meta charset="utf-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1">
+  	<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+    <META HTTP-EQUIV="Expires" CONTENT="-1">
+  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  	<link rel='stylesheet prefetch' href='css/angular-material.css'>
+    <link rel='stylesheet prefetch' href='https://material.angularjs.org/1.1.0-rc.5/docs.css'>
+  	<link rel="stylesheet" href="css/style.css">
+
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+         <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.2/sockjs.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.7/angular.min.js"></script>
+    <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js'></script>
+	<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.min.js'></script>
+	<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js'></script>
+	<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js'></script>
+	<script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-114/svg-assets-cache.js'></script>
+	
+	<script src='node_modules/angular-material.js'></script>
+    	<script src="node_modules/ag-grid/dist/ag-grid.js"></script>
+    	<script src="node_modules/chart.js/dist/Chart.min.js"></script>
+   	<script src="node_modules/angular-chart.js/dist/angular-chart.min.js"></script>
+    	<script src="js/StockGrid.js"></script>
+    
+
+</head>
+
+<body ng-app="marketGrid" ng-controller="marketCtrl"  >
+	 <div class="market-panel">
+	 	<div class = "body-img-container">
+		<a href="/" target="_parent">
+			<img  class = "body-img" src="css/images/bvmt2.jpg" alt="BVMT MARKET STATION" >
+		</a>
+	   	<div class="body-img-txt">
+	   		<h5>Séance du {{seance}} {{timeIndex}} (Flux retardé de 15mn)</h5>
+	   	</div>
+	   
+	   	</div>	
+
+		<div class="ticker-heading" >
+			<table class="ticker">
+			  <tr>
+			    <td style="padding-top:5px">{{tunindex}}</td>
+			    <td style="padding-top:5px"><span animate-on-change="tunChange">{{tunChange}}%</span></td>
+			  </tr>
+			  <tr>
+			    <td><span animate-on-change="tunChange" style="font-weight: bold;" >{{tunLast}}</span></td>
+			    <td><span animate-on-change="tunChange">{{tunLast - tunQty | ceil}}<sup>Pts</sup></span></td>
+			  </tr>
+			</table>
+
+			<table class="ticker" style="border-top:3px solid #cca300 ">
+			  <tr>
+			    <td style="padding-top:5px">{{tunindex20}}</td>
+			    <td style="padding-top:5px"><span animate-on-change="tun20Change">{{tun20Change}}%</span></td>
+			  </tr>
+			  <tr>
+			    <td><span animate-on-change="tun20Change" style="font-weight: bold;">{{tun20Last}}</span></td>
+			    <td><span animate-on-change="tun20Change">{{tun20Last - tun20Qty | ceil}}<sup>Pts</sup></span></td>
+			  </tr>
+			</table>
+			<table class = "dropDown">
+			  <tr>
+			    <td style="padding-top:2px;float:right;">
+					<div class="dropdown" >
+					  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Global
+					  <span class="caret"></span></button>
+					  <ul class="dropdown-menu" >
+					    <li  ng-click="changeMarketGroup('groups/11,12,52,95,99')"><a>Global (Groupes 11,12,52,95,99)</a></li>
+					    <li  ng-click="changeMarketGroup('groups/11')"><a>Continu (Groupe 11)</a></li>
+					    <li  ng-click="changeMarketGroup('groups/12')"><a>Fixing (Groupe 12)</a></li>
+					    <li  ng-click="changeMarketGroup('groups/99')"><a>Fixing (Groupe 99)</a></li>
+					    <li  ng-click="changeMarketGroup('groups/13')"><a>Hors cote (Groupe 13)</a></li>
+					    <li  ng-click="changeMarketGroup('groups/32')"><a>Lignes secondaires (Groupe 32)</a></li>
+					    <li  ng-click="changeMarketGroup('groups/33')"><a>Lig. Sec. Hors cote (Groupe 33)</a></li>
+					    <li  ng-click="changeMarketGroup('groups/21')"><a>Groupe 21 (Groupe 21)</a></li>
+					    <li role="separator" class="divider"></li>
+					    <li  ng-click="changeMarketGroup('groups/00')"><a>Indices Sectoriels (Groupe 00)</a></li>
+					  </ul>
+					</div>
+			    </td>
+			  </tr>
+			</table>
+			<table>
+			  <tr>
+			   
+			    <td style="padding-top:7px; padding-left:15px;">
+					<span class = "statistics">Hausses <span class="badgehausse">{{highers}}</span></span>
+			    </td>
+			    <td style="padding-top:7px;">
+			    	<span class="statistics">Baisses <span class="badgebaisse">{{lowers}}</span></span>
+			    </td>
+				 <td style="padding-top:7px;">
+			    	<span class="statistics">Inchangés <span class="badge" >{{inactives}}</span></span>
+			    </td>
+			    <td style="padding-top:7px;">
+			    	<span class="statistics">Actives <span class="badgeactive">{{actives}} / {{total}} </span></span>
+			    </td>
+			     <td style="padding-top:5px; padding-left:15px; font-size:50px">
+					<span class = "statistics">Total volume: <span class="panel panel-default statisticsvol">{{totalCapitals}} DT</span></span>
+				</td>
+			  </tr>
+			</table>
+		<div>
+			
+		</div>
+		</div>
+	<div class="marketgrid-body" >
+     <div ag-grid="gridOptions" class="ag-dark"></div>
+     <center>
+		     <div class="spinner" ng-show="loading">
+			  <div class="rect1"></div>
+			  <div class="rect2"></div>
+			  <div class="rect3"></div>
+			  <div class="rect4"></div>
+			  <div class="rect5"></div>
+			</div>
+		</center>
+    </div>
+    </div>
+     <div  class="stock-details">
+	   
+	    		<div class="stock-brief-panel" >
+	            	
+	            	 <table class="stock-brief-panel-body">
+						  <tr>
+						    <td class="stock-brief-panel-body valeur">{{valeur}}</td>
+						    <td class="stock-brief-panel-body last"><span animate-on-change="change">{{last| spaceceil }}</span></td>
+							<td class="stock-brief-panel-body change"><span animate-on-change="change">{{change}}%</span></td>
+
+						  </tr>
+						  <tr>
+						    <td class="stock-brief-panel-body isin">{{isin}}</td>
+						    <td class ="stock-brief-panel-body date">{{seance}}</td>
+						    <td class ="stock-brief-panel-body time">{{time}}</td>
+
+						  </tr>
+					</table>
+				</div>
+	    	    	<div class="stock-details-headers" >{{stockName}} <span ng-class="color_status">{{status}}</span></div>
+            		<table class="details-value-body">
+					  <tr>
+					  	<td class="default">Veille</td>
+					  	<td class="last"><span animate-on-change-old="close">{{close | spaceceil}}</span></td>
+					  	<td class="default">Variation</td>
+		 			  	<td class="change"><span fixed-animate-on-change="change">{{change}}%</span></td>
+					  <tr>
+					    <td class="default">Qté.Ech</td>
+						<td class="qty"><span animate-on-change-old="qty">{{qty |space  }}</span></td>
+					    <td class="default">Cap.Ech</td>
+						<td class="caps"><span animate-on-change-old="caps">{{caps |space }}</span></td>
+					  </tr>
+					    <td class="default">P.Haut</td>
+						<td class="high"><span animate-on-change-old="high">{{high | spaceceil}}</span></td>
+					    <td class="default">P.Bas</td>
+						<td class="low"><span animate-on-change-old="low">{{low | spaceceil}}</span></td>
+					  </tr>
+					  <tr>
+					    <td class="default">S.Haut</td>
+						<td class="max"><span animate-on-change-old="max">{{max | spaceceil}}</span></td>
+					    <td class="default">S.Bas</td>
+						<td class="min"><span animate-on-change-old="min">{{min | spaceceil}}</span></td>
+					  </tr>
+						  
+					</table>
+
+	            	<div class="stock-details-headers">Carnet d'ordres</div>
+	            	<div class="ordresbook-body">
+					<div ag-grid="gridOptionsForOrdresBook" class="ag-dark"  ></div>
+					</div>
+
+					<div class="stock-details-headers">Intraday</div>
+				    <md-tabs class="intraday-panel" >
+				      <md-tab label="Graphique">
+				      	<div class="graph-body">
+					    	<canvas id="line" class="chart chart-line" chart-data="data" chart-labels="labels" chart-series="series" chart-colors="colors" chart-options="options" chart-dataset-override="datasetOverride" chart-click="onClick" >
+							</canvas> 
+						</div>
+				      </md-tab>
+				      <md-tab label="Transactions" class="transaction-body">
+		    				<div ag-grid="gridOptionsForAlltransaction" class="ag-dark"></div>
+				      </md-tab>
+				    </md-tabs>
+
+
+     </div>
+</body>
+</html>
+

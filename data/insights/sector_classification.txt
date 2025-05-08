@@ -1,0 +1,15 @@
+1. SFBT is a major beverage company in Tunisia, producing beer and soft drinks.
+    2. BIAT is one of the largest private banks in Tunisia offering retail and commercial banking services.
+    3. Tunisie Leasing provides equipment and real estate leasing services to businesses.
+
+Format your response as:
+    
+    Company 1: [Sector]
+    Explanation: [Brief explanation of why this company belongs to this sector]
+    
+    Company 2: [Sector]
+    Explanation: [Brief explanation of why this company belongs to this sector]
+    
+    And so on.
+
+I hope this helps!

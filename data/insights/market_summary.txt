@@ -1,0 +1,23 @@
+Market Summary
+
+| Date       | Sector | Average Daily Change | Best Performing | Worst Performing | Best Performing Stock | Worst Performing Stock | Total Trading Volume |
+| ---------- | ------ | ------------------- | --------------- | ----------------- | --------------------- | ---------------------- | ------------------- |
+| 2025-04-20 | Transport | 0.57%               | Average Daily Change | -0.57%            | -0.32%                | -0.63%                | 436,266 shares      |
+| 2025-04-21 | Food & Beverage | -0.32%            | Average Daily Change | -0.32%            | -0.63%                | -0.12%                | 436,266 shares      |
+| 2025-04-22 | Transport | 0.57%               | Average Daily Change | -0.57%            | -0.32%                | -0.63%                | 436,266 shares      |
+| 2025-04-23 | Food & Beverage | -0.63%            | Average Daily Change | -0.63%            | -0.32%                | -0.63%                | 436,266 shares      |
+| 2025-04-24 | Transport | 0.57%               | Average Daily Change | -0.57%            | -0.32%                | -0.63%                | 436,266 shares      |
+| 2025-04-25 | Food & Beverage | -0.63%            | Average Daily Change | -0.63%            | -0.32%                | -0.63%                | 436,266 shares      |
+| 2025-04-26 | Transport | 0.57%               | Average Daily Change | -0.57%            | -0.32%                | -0.63%                | 436,266 shares      |
+| 2025-04-27 | Food & Beverage | -0.63%            | Average Daily Change | -0.63%            | -0.32%                | -0.63%                | 436,266 shares      |
+
+Professional Market Summary
+
+| Date       | Sector | Average Daily Change | Best Performing | Worst Performing | Best Performing Stock | Worst Performing Stock | Total Trading Volume |
+| ---------- | ------ | ------------------- | --------------- | ----------------- | --------------------- | ---------------------- | ------------------- |
+| 2025-04-20 | Transport | 0.57%               | Average Daily Change | -0.57%            | -0.32%                | -0.63%                | 436,266 shares      |
+| 2025-04-21 | Food & Beverage | -0.32%            | Average Daily Change | -0.32%            | -0.63%                | -0.12%                | 436,266 shares      |
+| 2025-04-22 | Transport | 0.57%               | Average Daily Change | -0.57%            | -0.32%                | -0.63%                | 436,266 shares      |
+| 2025-04-23 | Food & Beverage | -0.63%            | Average Daily Change | -0.63%            | -0.32%                | -0.63%                | 436,266 shares      |
+| 2025-04-24 | Transport | 0.57%               | Average Daily Change | -0.57%            | -0.32%                | -0.63%                | 436,266 shares      |
+| 2025-04-2
